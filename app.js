@@ -1,4 +1,4 @@
-const { json } = require("express");
+const { json, response } = require("express");
 const express = require("express");
 const client = require("mailchimp-marketing");
 
@@ -32,8 +32,12 @@ app.post("/", async (req, res) => {
         LNAME: secondName,
       },
     });
+    console.log(email+firstName+secondName);
+    console.log(response);
     res.sendFile(__dirname + "/success.html");
   } catch (err) {
+    console.log(email+firstName+secondName);
+    console.log(err);
     res.sendFile(__dirname + "/failure.html");
   }
 });
