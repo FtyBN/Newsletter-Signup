@@ -1,6 +1,7 @@
 const { json, response } = require("express");
 const express = require("express");
 const client = require("mailchimp-marketing");
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,8 +10,8 @@ app.use(express.urlencoded({ extend: true }));
 app.use(express.static("public"));
 
 client.setConfig({
-  apiKey: "2a2bd8c4dbef364a6b490481eb63580d-us17",
-  server: "us17",
+  apiKey: process.env.API_KEY,
+  server: process.env.SERVER
 });
 
 app.get("/", (req, res) => {
